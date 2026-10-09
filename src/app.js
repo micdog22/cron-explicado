@@ -102,7 +102,7 @@ function renderChips(result) {
   for (let i = 0; i < 5; i++) {
     const missing = tokens[i] === undefined;
     const bad = !result.ok && (result.field === i || missing);
-    els.chips.append(chip(missing ? '—' : tokens[i], CAPTIONS[i], bad ? 'bad' : ''));
+    els.chips.append(chip(missing ? 'falta' : tokens[i], CAPTIONS[i], bad ? 'bad' : ''));
   }
 }
 

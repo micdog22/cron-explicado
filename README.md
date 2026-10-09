@@ -1,4 +1,4 @@
-# Cron Explicado — entenda e monte expressões cron em português (HTML + JS)
+# Cron Explicado: entenda e monte expressões cron em português (HTML + JS)
 
 Cole uma expressão cron e veja, em português claro, quando ela roda, o que cada campo significa e as próximas 10 execuções no seu horário. Também dá para montar a expressão clicando, sem decorar a sintaxe. Serve para quem agenda tarefas no crontab do Linux, no GitHub Actions ou em qualquer sistema que use o formato de 5 campos.
 
@@ -6,7 +6,7 @@ Cole uma expressão cron e veja, em português claro, quando ela roda, o que cad
 
 ## Recursos
 
-- Os 5 campos do cron padrão (minuto, hora, dia do mês, mês e dia da semana) com listas, intervalos e passos (`*/15`, `10-30/5`, `5/20`), nomes em inglês (`JAN`–`DEC`, `SUN`–`SAT`, com maiúsculas ou minúsculas) e domingo como `0` ou `7`.
+- Os 5 campos do cron padrão (minuto, hora, dia do mês, mês e dia da semana) com listas, intervalos e passos (`*/15`, `10-30/5`, `5/20`), nomes em inglês (`JAN` a `DEC`, `SUN` a `SAT`, com maiúsculas ou minúsculas) e domingo como `0` ou `7`.
 - Atalhos `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@midnight`, `@hourly` e `@reboot`.
 - Descrição natural: `30 8 * * 1-5` vira “Às 08:30, de segunda a sexta-feira”.
 - Regra do Vixie cron para dia do mês × dia da semana, com aviso quando ela muda o resultado.
@@ -53,7 +53,7 @@ npm test
 
 - **Dia do mês × dia da semana:** como no Vixie cron (e no cronie), quando os dois campos estão restritos a execução acontece se **qualquer um** coincidir. Um campo conta como livre quando começa com `*`; nesse caso os dois precisam coincidir. Por isso `0 0 13 * 5` roda em todo dia 13 e em toda sexta-feira, enquanto `0 0 */2 * 1` só roda nos dias ímpares que caem numa segunda-feira.
 - **Próximas execuções:** o cálculo percorre só os valores permitidos de cada campo (ano → mês → dia → hora → minuto), sem testar minuto a minuto, e procura até 400 anos à frente (um ciclo completo do calendário gregoriano). No horário local, horários que não existem por causa do horário de verão são ignorados.
-- **Fuso horário:** o crontab do Linux usa o fuso do servidor; o `schedule` do GitHub Actions usa sempre UTC. Para rodar às 08:00 de Brasília (UTC−3) no GitHub Actions, use `0 11 * * *`.
+- **Fuso horário:** o crontab do Linux usa o fuso do servidor; o `schedule` do GitHub Actions usa sempre UTC. Para rodar às 08:00 de Brasília (UTC-3) no GitHub Actions, use `0 11 * * *`.
 
 ## Contribuindo
 
@@ -61,4 +61,4 @@ Issues e pull requests são bem-vindos.
 
 ## Licença
 
-MIT — veja [LICENSE](LICENSE).
+MIT. Veja [LICENSE](LICENSE).

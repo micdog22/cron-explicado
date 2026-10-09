@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cron Explicado — entenda e monte expressões cron em português</title>
+  <title>Cron Explicado: entenda e monte expressões cron em português</title>
   <meta name="description" content="Cole uma expressão cron e veja o que ela faz em português, as próximas execuções no seu horário e um montador visual. Tudo no navegador.">
   <meta name="theme-color" content="#6d28d9">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
@@ -75,7 +75,7 @@
     <section class="card tips" aria-labelledby="t-tips">
       <h2 id="t-tips">Bom saber</h2>
       <ul>
-        <li><strong>GitHub Actions usa UTC.</strong> O <code>schedule</code> dos workflows sempre roda em UTC. Para executar às 08:00 de Brasília (UTC−3), escreva <code>0 11 * * *</code>. Lá o intervalo mínimo é de 5 minutos, as execuções podem atrasar em horários de muita demanda e atalhos como <code>@daily</code> não são aceitos.</li>
+        <li><strong>GitHub Actions usa UTC.</strong> O <code>schedule</code> dos workflows sempre roda em UTC. Para executar às 08:00 de Brasília (UTC-3), escreva <code>0 11 * * *</code>. Lá o intervalo mínimo é de 5 minutos, as execuções podem atrasar em horários de muita demanda e atalhos como <code>@daily</code> não são aceitos.</li>
         <li><strong>No Linux, o crontab usa o fuso do servidor.</strong> Confira com <code>date</code> antes de agendar. Algumas implementações, como o cronie, aceitam a variável <code>CRON_TZ</code> no próprio crontab.</li>
         <li><strong>Dia do mês ou dia da semana.</strong> Quando os dois campos estão restritos, basta um coincidir: <code>0 0 13 * 5</code> roda em todo dia 13 e em toda sexta-feira, e não só na “sexta-feira 13”. Se um deles começar com <code>*</code> (como <code>*/2</code>), os dois precisam coincidir.</li>
         <li><strong>0 e 7 são domingo.</strong> Também valem nomes em inglês, como <code>MON-FRI</code> e <code>JAN,JUL</code>, com maiúsculas ou minúsculas.</li>
