@@ -1,0 +1,11 @@
+{
+  "name": "cron-explicado",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Entenda e monte expressões cron em português, com as próximas execuções no seu horário.",
+  "type": "module",
+  "scripts": { "test": "node --test" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/micdog22/cron-explicado.git" },
+  "homepage": "https://micdog22.github.io/cron-explicado/"
+}

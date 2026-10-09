@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cron Explicado — entenda e monte expressões cron em português</title>
+  <meta name="description" content="Cole uma expressão cron e veja o que ela faz em português, as próximas execuções no seu horário e um montador visual. Tudo no navegador.">
+  <meta name="theme-color" content="#6d28d9">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Cron Explicado</h1>
+    <p class="lead">Entenda e monte expressões cron em português, com as próximas execuções no seu horário.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="t-expr">
+      <h2 id="t-expr">Expressão</h2>
+      <label for="expr">Expressão cron (5 campos ou um atalho, como @daily)</label>
+      <div class="expr-row">
+        <input id="expr" class="expr-input" type="text" value="30 8 * * 1-5" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="chips-help">
+        <button type="button" class="btn secondary" id="copy-expr">Copiar</button>
+        <button type="button" class="btn secondary" id="copy-link">Copiar link</button>
+      </div>
+      <p id="chips-help" class="sr-only">Ordem dos campos: minuto, hora, dia do mês, mês e dia da semana.</p>
+      <ol class="chips" id="chips" aria-hidden="true"></ol>
+
+      <div id="result" class="result" aria-live="polite">
+        <p class="sentence" id="sentence"></p>
+        <p class="command" id="command" hidden></p>
+        <p class="error" id="error" role="alert" hidden></p>
+        <ul class="notes" id="notes"></ul>
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+    </section>
+
+    <div class="two-col">
+      <section class="card" aria-labelledby="t-fields">
+        <h2 id="t-fields">Campo a campo</h2>
+        <div class="table-wrap">
+          <table class="fields">
+            <thead><tr><th scope="col">Campo</th><th scope="col">Texto</th><th scope="col">Valores</th></tr></thead>
+            <tbody id="fields-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="t-runs">
+        <h2 id="t-runs">Próximas execuções</h2>
+        <label for="tz">Calcular no fuso</label>
+        <select id="tz">
+          <option value="local">Horário do seu navegador</option>
+          <option value="utc">UTC (como no GitHub Actions)</option>
+        </select>
+        <ol class="runs" id="runs"></ol>
+        <p class="muted small" id="tz-note"></p>
+      </section>
+    </div>
+
+    <section class="card" aria-labelledby="t-builder">
+      <h2 id="t-builder">Montar expressão</h2>
+      <p class="muted">Escolha os valores de cada campo; a expressão acima é atualizada na hora.</p>
+      <div class="builder" id="builder"></div>
+      <p class="builder-status" id="builder-status" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="t-examples">
+      <h2 id="t-examples">Exemplos</h2>
+      <div class="examples" id="examples"></div>
+    </section>
+
+    <section class="card tips" aria-labelledby="t-tips">
+      <h2 id="t-tips">Bom saber</h2>
+      <ul>
+        <li><strong>GitHub Actions usa UTC.</strong> O <code>schedule</code> dos workflows sempre roda em UTC. Para executar às 08:00 de Brasília (UTC−3), escreva <code>0 11 * * *</code>. Lá o intervalo mínimo é de 5 minutos, as execuções podem atrasar em horários de muita demanda e atalhos como <code>@daily</code> não são aceitos.</li>
+        <li><strong>No Linux, o crontab usa o fuso do servidor.</strong> Confira com <code>date</code> antes de agendar. Algumas implementações, como o cronie, aceitam a variável <code>CRON_TZ</code> no próprio crontab.</li>
+        <li><strong>Dia do mês ou dia da semana.</strong> Quando os dois campos estão restritos, basta um coincidir: <code>0 0 13 * 5</code> roda em todo dia 13 e em toda sexta-feira, e não só na “sexta-feira 13”. Se um deles começar com <code>*</code> (como <code>*/2</code>), os dois precisam coincidir.</li>
+        <li><strong>0 e 7 são domingo.</strong> Também valem nomes em inglês, como <code>MON-FRI</code> e <code>JAN,JUL</code>, com maiúsculas ou minúsculas.</li>
+        <li><strong>Passos recomeçam.</strong> <code>*/7</code> nos minutos dá 0, 7, …, 56 e, na hora seguinte, 0 de novo. Não é um intervalo contínuo de 7 minutos.</li>
+        <li><strong>Sem segundos.</strong> O cron padrão tem resolução de 1 minuto. Expressões com 6 ou 7 campos são de outras ferramentas, como Quartz e Spring.</li>
+        <li><strong>O <code>%</code> no comando do crontab vira quebra de linha.</strong> Escreva <code>\%</code>, por exemplo: <code>date +\%F</code>.</li>
+        <li><strong><code>@reboot</code></strong> roda uma vez quando o serviço cron inicia, normalmente na inicialização do sistema.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tudo roda no seu navegador. Código aberto no <a href="https://github.com/micdog22/cron-explicado">GitHub</a> · Licença MIT</p>
+  </footer>
+</body>
+</html>
